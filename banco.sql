@@ -404,6 +404,30 @@ CREATE TABLE sucur_vent(
 
 
 
+#vistas
+CREATE VIEW trans_cajas_ahorro AS
+SELECT
+    ca.nro_ca,
+    ca.saldo,
+    t.nro_trans,
+    t.fecha,
+    t.hora,
+    t.tipo,
+    t.monto,
+    t.destino,
+    t.cod_caja,
+    c.nro_cliente,
+    c.tipo_doc,
+    c.nro_doc,
+    c.nombre,
+    c.apellido
+FROM transaccion t
+JOIN caja_Ahorro ca ON t.nro_ca = ca.nro_ca
+JOIN cliente c ON t.nro_cliente = c.nro_cliente
+WHERE t.tipo IN ('debito', 'extraccion', 'transferencia');
+
+
+
 CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin';
 GRANT ALL PRIVILEGES ON banco.* TO 'admin'@'localhost' WITH GRANT OPTION;
 
