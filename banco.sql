@@ -31,7 +31,7 @@ CREATE TABLE sucur_ubic(
     
     constraint pk_sucur_ubic_sucursal
     PRIMARY KEY(nro_sucursal),
-    Foreign Key (nro_sucursal) REFERENCES Sucursal (nro_sucursal)
+    Foreign Key (nro_sucursal) REFERENCES sucursal (nro_sucursal)
     on delete RESTRICT on update CASCADE
 
     #--constraint pk_sucur_ubic_ciudad
@@ -96,7 +96,7 @@ CREATE TABLE plazo_cliente(
     FOREIGN KEY (nro_cliente) REFERENCES cliente(nro_cliente)
     ON DELETE RESTRICT ON UPDATE CASCADE,
 
-    CONSTRAINT pk_plazo_cliente_plaz_fijo
+    CONSTRAINT pk_plazo_cliente_plazo_fijo
     FOREIGN KEY(nro_plazo) REFERENCES plazo_fijo(nro_plazo)
     ON DELETE RESTRICT ON UPDATE CASCADE
 
@@ -278,7 +278,7 @@ CREATE TABLE transaccion_por_caja(
     FOREIGN KEY(nro_trans) REFERENCES transaccion(nro_trans)
     on DELETE RESTRICT on UPDATE CASCADE,
 
-    FOREIGN KEY(nro_ca) REFERENCES cara_Ahorro(nro_ca)
+    FOREIGN KEY(cod_caja) REFERENCES caja(cod_caja)
     ON DELETE RESTRICT on UPDATE CASCADE
 
 )ENGINE = INNODB;
@@ -334,97 +334,107 @@ CREATE TABLE transferencia(  #????
     FOREIGN KEY (origen) REFERENCES cliente_ca(nro_ca)
     on DELETE RESTRICT on UPDATE CASCADE,
 
-    FOREIGN KEY (destino) REFERENCES cliente_ca(nro_ca)
+    FOREIGN KEY (destino) REFERENCES caja_Ahorro(nro_ca)
     ON DELETE RESTRICT on UPDATE CASCADE
 
 )ENGINE = INNODB;
 
-CREATE TABLE depos_CA(
-    nro_trans int NOT NULL
 
-
-
-)ENGINE = INNODB;
-
-CREATE TABLE extrac_CL(
-    nro_trans int NOT NULL
-
-
-
-)ENGINE = INNODB;
-
-CREATE TABLE transf_CL(
-    nro_trans int NOT NULL
-
-
-
-)ENGINE = INNODB;
-
-CREATE TABLE debit_CL(
-    nro_trans int NOT NULL
-
-
-
-)ENGINE = INNODB;
-
-CREATE TABLE trans_Caja(
-    nro_trans int NOT NULL
-
-
-
-)ENGINE = INNODB;
-CREATE TABLE tarjeta_CL(
-    
-
-
-
-)ENGINE = INNODB;
-
-CREATE TABLE pago_PR(
-    
-
-
-
-)ENGINE = INNODB;
-
-CREATE TABLE prestamo_Cliente(
-    
-
-
-
-)ENGINE = INNODB;
-CREATE TABLE sucur_vent(
-    
-
-
-
-)ENGINE = INNODB;
-
-
-
-
-
-#vistas
 CREATE VIEW trans_cajas_ahorro AS
-SELECT
-    ca.nro_ca,
+SELECT 
+    cca.nro_ca as nro_ca,
+    ca.saldo as saldo,
+    t.nro_trans as nro_trans,
+    t.fecha as fecha,
+    t.hora as hora,
+    'transferencia' AS tipo,
+    t.monto as monto,
+    t.cod_caja as cod_caja,
+    t.nro_cliente as nro_cliente,
+    c.tipo_documento AS tipo_doc,
+    c.nro_documento AS nro_doc,
+    c.nombre as nombre,
+    c.apellido as apellido,
+    t.destino as destino
+FROM transaccion t
+join transferencia tr on t.nro_trans = tr.nro_trans
+JOIN cliente_CA cca ON cca.nro_ca = t.origen           
+JOIN cliente c ON c.nro_cliente = tr.nro_cliente      
+JOIN caja_Ahorro ca ON ca.nro_ca = cca.nro_ca
+
+UNION ALL
+
+SELECT 
+    cca.nro_ca as nro_ca,
+    ca.saldo as saldo,
+    d.nro_trans as nro_trans,
+    t.fecha AS fecha,
+    t.hora AS hora,
+    'debito' AS tipo,
+    t.monto AS monto,
+    t.cod_caja AS cod_caja,
+    d.nro_cliente as nro_cliente,
+    c.tipo_documento AS tipo_doc,
+    c.nro_documento AS nro_doc,
+    c.nombre as nombre,
+    c.apellido as apellido,
+    NULL AS destino
+FROM transaccion t 
+join debito d on t.nro_trans = d.nro_trans
+join cliente_CA cca ON cca.nro_ca = d.nro_ca
+JOIN cliente c ON c.nro_cliente = cca.nro_cliente
+JOIN caja_Ahorro ca on ca.nro_ca = cca.nro_ca
+
+UNION ALL
+
+SELECT 
+    cca.nro_ca as nro_ca,                            
+    ca.saldo as saldo,                              
+    dep.nro_trans as nro_trans,                       
+    t.fecha as fecha,                          
+    t.hora as hora,                              
+    'Depósito' AS tipo,                    
+    t.monto as monto,                             
+    t.cod_caja as cod_caja,                          
+    t.nro_cliente as nro_cliente,                         
+    c.tipo_doc as tipo_doc,                            
+    c.nro_doc as nro_doc,                             
+    c.nombre as nombre,                              
+    c.apellido as apellido,                            
+    NULL AS destino                        
+FROM transaccion t 
+JOIN deposito dep on dep.nro_trans = t.nro_trans   
+JOIN cliente_CA cca ON cca.nro_ca = deposito.nro_ca 
+JOIN caja_Ahorro ca ON ca.nro_ca = cca.nro_ca            
+JOIN cliente c ON c.nro_cliente = cca.nro_cliente
+
+UNION ALL
+
+SELECT 
+    cca.nro_ca,
     ca.saldo,
     t.nro_trans,
-    t.fecha,
-    t.hora,
-    t.tipo,
-    t.monto,
-    t.destino,
-    t.cod_caja,
-    c.nro_cliente,
-    c.tipo_doc,
-    c.nro_doc,
-    c.nombre,
-    c.apellido
+    t.fecha AS fecha,
+    t.hora AS hora,
+    'extraccion' AS tipo,
+    t.monto AS monto,
+    t.cod_caja AS cod_caja,
+    e.nro_cliente as nro_cliente,
+    c.tipo_documento AS tipo_doc,
+    c.nro_documento AS nro_doc,
+    c.nombre as nombre,
+    c.apellido as apellido,
+    NULL AS destino
 FROM transaccion t
-JOIN caja_Ahorro ca ON t.nro_ca = ca.nro_ca
-JOIN cliente c ON t.nro_cliente = c.nro_cliente
-WHERE t.tipo IN ('debito', 'extraccion', 'transferencia');
+join extraccion e on e.nro_trans = t.nro_trans
+JOIN cliente_CA cca ON cca.nro_ca = e.nro_ca 
+JOIN caja_Ahorro ca ON ca.nro_ca = cca.nro_ca          
+JOIN cliente c ON c.nro_cliente = e.nro_cliente 
+
+
+#Como hago para obtener cod_caja
+
+
 
 
 
