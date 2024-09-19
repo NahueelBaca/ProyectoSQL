@@ -1,36 +1,36 @@
-INSERT INTO ciudad VALUES (8000,"Bahía Blanca");
-INSERT INTO ciudad VALUES (8001,"Cabildo");
-INSERT INTO ciudad VALUES (8002,"Pedro Luro");
-INSERT INTO ciudad VALUES (8003,"La Paz");
-INSERT INTO ciudad VALUES (8004,"Necochea");
-INSERT INTO ciudad VALUES (8005,"Pringles");
-INSERT INTO ciudad VALUES (8006,"Roca");
+INSERT INTO ciudad VALUES (1466,"Bahía Blanca");
+INSERT INTO ciudad VALUES (2345,"Olavarria");
+INSERT INTO ciudad VALUES (3654,"Villa iris");
+INSERT INTO ciudad VALUES (4213,"Suarez");
+INSERT INTO ciudad VALUES (5674,"Torquins");
+INSERT INTO ciudad VALUES (6454,"Pringles");
+INSERT INTO ciudad VALUES (7123,"Ventana");
 
 
 
 SELECT * FROM ciudad;
 
 
-INSERT INTO sucursal VALUES (1,8000,"sucursal primera","Estomba 142","4511111","8 a 12");
-INSERT INTO sucursal VALUES (2,8001,"sucursal segunda","9 de julio 1283","4522222","9 a 13");
-INSERT INTO sucursal VALUES (3,8002,"sucursal tercera","Colón 971","4533333","10 a 14");
-INSERT INTO sucursal VALUES (4,8003,"sucursal cuarta","Alem 882","4544444","14 a 18");
-INSERT INTO sucursal VALUES (5,8004,"sucursal quinta","Pedro Pico 92","4555555","15 a 19");
-INSERT INTO sucursal VALUES (6,8005,"sucursal sexta","Moreno 377","4566666","16 a 20");
-INSERT INTO sucursal VALUES (7,8006,"sucursal septima","Sarmiento 880","4577777","17 a 21");
-INSERT INTO sucursal VALUES (8,8000,"sucursal octava","italia 443","4501010","8 a 18");
+INSERT INTO sucursal VALUES (1,1466,"sucursal primera","Estomba 142","4511111","8 a 12");
+INSERT INTO sucursal VALUES (2,2345,"sucursal segunda","9 de julio 1283","4522222","9 a 13");
+INSERT INTO sucursal VALUES (3,3654,"sucursal tercera","Colón 971","4533333","10 a 14");
+INSERT INTO sucursal VALUES (4,5674,"sucursal cuarta","Alem 882","4544444","14 a 18");
+INSERT INTO sucursal VALUES (5,6454,"sucursal quinta","Pedro Pico 92","4555555","15 a 19");
+INSERT INTO sucursal VALUES (6,7123,"sucursal sexta","Moreno 377","4566666","16 a 20");
+INSERT INTO sucursal VALUES (7,1466,"sucursal septima","Sarmiento 880","4577777","17 a 21");
+INSERT INTO sucursal VALUES (8,7123,"sucursal octava","italia 443","4501010","8 a 18");
 SELECT * FROM sucursal;
 
-INSERT INTO empleado VALUES(1001,"Alli","Dele","DNI",38920001,"Tottenham 3101","291450791","Telefonista",md5("1441"),1);
-INSERT INTO empleado VALUES(1002,"Pavón","Cristian","DNI",35647892,"Boca Juniors 72","291578642","Administrativo",md5("1552"),2);
-INSERT INTO empleado VALUES(1003,"Hazard","Eden","DNI",36547853,"Chelsea 1003","291783483","Atención al público",md5("1663"),3);
-INSERT INTO empleado VALUES(1004,"Palermo","Martín","DNI",36458984,"Estudiantes 94","291789654","Administrativo",md5("1774"),4);
-INSERT INTO empleado VALUES(1005,"Paredes","Leandro","DNI",39856555,"Roma 1095","291486575","Gerente",md5("1885"),5);
-INSERT INTO empleado VALUES(1006,"Icardi","Mauro","DNI",36458696,"Internazzionale 999","291789456","Cajero",md5("1776"),6);
-INSERT INTO empleado VALUES(1007,"Messi","Lionel","DNI",32456787,"Argentina 101010","291450794","Gerente",md5("1227"),7);
-INSERT INTO empleado VALUES(1008,"Cardona","Edwin","DNI",45789452,"Boca Juniors 102","291456862","Atención al público",md5("1562"),2);
-INSERT INTO empleado VALUES(1009,"Benedetto","Darío","DNI",35456884,"Boca Junioers 999","291568499","Cajero",md5("1444"),4);
-INSERT INTO empleado VALUES(1010,"Martínez","Gonzalo","DNI",36458786,"Friver Plate 106","291489636","Administrativo",md5("1666"),6);
+INSERT INTO empleado VALUES(1001,"Juan","Del","DNI",38920001,"San martin 22","291450791","Telefonista",md5("1441"),1);
+INSERT INTO empleado VALUES(1002,"Perez","Elraton","DNI",35647892,"Mitre 72","291578642","Administrativo",md5("1552"),2);
+INSERT INTO empleado VALUES(1003,"Dias","Manuel","DNI",36547853,"Colombia 1003","291783483","Atención al público",md5("1663"),3);
+INSERT INTO empleado VALUES(1004,"Gomez","Martín","DNI",36458984,"Estomba 94","291789654","Administrativo",md5("1774"),4);
+INSERT INTO empleado VALUES(1005,"Young","Leandro","DNI",39856555,"Rotonda 1095","291486575","Gerente",md5("1885"),5);
+INSERT INTO empleado VALUES(1006,"Baca","Mauro","DNI",36458696,"Los andes 999","291789456","Cajero",md5("1776"),6);
+INSERT INTO empleado VALUES(1007,"Castro","Nicolas","DNI",32456787,"Mara 101010","291450794","Gerente",md5("1227"),7);
+INSERT INTO empleado VALUES(1008,"Rossi","Francisco","DNI",45789452,"11 de abril 102","291456862","Atención al público",md5("1562"),2);
+INSERT INTO empleado VALUES(1009,"Striebeck","Jorge","DNI",35456884,"Sarmiento 999","291568499","Cajero",md5("1444"),4);
+INSERT INTO empleado VALUES(1010,"Martínez","Gonzalo","DNI,",36458786,"Caronti 106","291489636","Administrativo",md5("1666"),6);
 SELECT * FROM empleado;
 
 INSERT INTO cliente VALUES (10001,"Alvarez","Alvaro","dni",39157999,"9 de julio 1332","4532529",'1995-11-27');
@@ -159,15 +159,15 @@ INSERT INTO cliente_ca VALUES (11002,4010);
 INSERT INTO cliente_ca VALUES (10001,4011);
 
 # nro tarjeta pin cvt fecha venc nro cliente nro ca
-INSERT INTO tarjeta VALUES (5001,md5("5001"),md5("1111"),'2019-05-10',10001,4001);
-INSERT INTO tarjeta VALUES (5002,md5("5002"),md5("2222"),'2019-07-12',11002,4002);
-INSERT INTO tarjeta VALUES (5003,md5("5003"),md5("3333"),'2019-08-01',12003,4003);
-INSERT INTO tarjeta VALUES (5004,md5("5004"),md5("4444"),'2019-08-02',13004,4004);
-INSERT INTO tarjeta VALUES (5005,md5("5005"),md5("5555"),'2019-08-22',14005,4005);
-INSERT INTO tarjeta VALUES (5006,md5("5006"),md5("6666"),'2019-07-30',15006,4006);
-INSERT INTO tarjeta VALUES (5007,md5("5007"),md5("7777"),'2019-10-01',16007,4009);
-INSERT INTO tarjeta VALUES (5008,md5("5008"),md5("8888"),'2019-12-17',17008,4007);
-INSERT INTO tarjeta VALUES (5009,md5("5009"),md5("9999"),'2020-01-11',17008,4008);
+INSERT INTO tarjeta VALUES (5001,md5("9999"),md5("1111"),'2025-05-10',10001,4001);
+INSERT INTO tarjeta VALUES (5002,md5("3123"),md5("2222"),'2010-07-12',11002,4002);
+INSERT INTO tarjeta VALUES (5003,md5("4344"),md5("3333"),'2024-08-01',12003,4003);
+INSERT INTO tarjeta VALUES (5004,md5("5221"),md5("4444"),'2023-08-02',13004,4004);
+INSERT INTO tarjeta VALUES (5005,md5("6432"),md5("5555"),'2019-08-22',14005,4005);
+INSERT INTO tarjeta VALUES (5006,md5("1235"),md5("6666"),'2024-07-30',15006,4006);
+INSERT INTO tarjeta VALUES (5007,md5("6543"),md5("7777"),'2024-10-01',16007,4009);
+INSERT INTO tarjeta VALUES (5008,md5("1223"),md5("8888"),'2024-12-17',17008,4007);
+INSERT INTO tarjeta VALUES (5009,md5("5666"),md5("9999"),'2021-01-11',17008,4008);
 
 
 # caja
@@ -187,7 +187,7 @@ INSERT INTO caja VALUES (60012);
 INSERT INTO caja VALUES (60013);
 
 #vetanilla
-#1-8
+
 
 INSERT INTO ventanilla VALUES(60001,1);
 INSERT INTO ventanilla VALUES(60002,2);
@@ -200,17 +200,14 @@ INSERT INTO ventanilla VALUES(60008,7);
 INSERT INTO ventanilla VALUES(60009,8);
 
 #atm
-# cod caja cod postal direccion
-# cod postal 8000-8006
-INSERT INTO atm VALUES(60010,8000,"Calle falsa 123");
-INSERT INTO atm VALUES(60011,8000,"Cabildo 500");
-INSERT INTO atm VALUES(60012,8001,"Glove Street 777");
-INSERT INTO atm VALUES(60013,8002,"Italia 558");
+
+INSERT INTO atm VALUES(60010,1466,"mitre 2");
+INSERT INTO atm VALUES(60011,2345,"san martin 500");
+INSERT INTO atm VALUES(60012,3654,"Gas 7727");
+INSERT INTO atm VALUES(60013,7123,"Italia 558");
 
 # transaccion
-# nro_trans fecha hora  hr mm ss monto 10 2
-#
-#
+
 INSERT INTO transaccion VALUES(70001,'2017-09-10','09:56:23', 155.00);
 INSERT INTO transaccion VALUES(70002,'2017-06-05','09:27:07', 99988.50);
 INSERT INTO transaccion VALUES(70003,'2017-08-22','16:43:33', 65789.80);
@@ -227,10 +224,6 @@ INSERT INTO transaccion VALUES(70013,'2017-06-17','19:18:38', 104560.00);
 INSERT INTO transaccion VALUES(70014,'2017-06-18','19:28:38', 10940.00);
 
 #debito
-# nro trans descripccion nro cliente (10001 11002 12003 13004 14005 15006 16007 17008) nro ca 4001-4008
-#
-#
-#
 
 INSERT INTO debito VALUES (70001,"Estación de servicio",10001, 4001);
 INSERT INTO debito VALUES (70002,"Mc Donals",11002,4002);
@@ -239,7 +232,7 @@ INSERT INTO debito VALUES (70003,"Ferreira Sport",12003,4003);
 INSERT INTO debito VALUES (70004,"Rucca Ind",13004,4004);
 
 #transaccion_por_caja
-#ñro trans cod caja de una caja sola
+
 
 INSERT INTO transaccion_por_caja VALUES (70005,60001);
 INSERT INTO transaccion_por_caja VALUES (70006,60002);
@@ -252,7 +245,7 @@ INSERT INTO transaccion_por_caja VALUES (70009,60005);
 INSERT INTO transaccion_por_caja VALUES (70010,60006);
 
 #deposito
-#nro trans es de transaccion por caja. nro caja de ahorro
+
 
 INSERT INTO deposito VALUES(70005,4005);
 INSERT INTO deposito VALUES(70006,4006);
@@ -260,7 +253,7 @@ INSERT INTO deposito VALUES(70007,4007);
 INSERT INTO deposito VALUES(70008,4008);
 
 #extraccion
-# nro trans nro cliente nro caja de caja de ahorro (pares cliente_ca)
+
 
 
 INSERT INTO extraccion VALUES(70009,13004,4009);
@@ -268,11 +261,6 @@ INSERT INTO extraccion VALUES(70010,11002,4010);
 INSERT INTO extraccion VALUES(70011,10001,4011);
 
 #transferencia
-
-# nro trans es de una transaccion por caja
-# nro cliente y nro caja de cliente ca
-# caja de ahorro destino
-#
 
 INSERT INTO transferencia VALUES(70012,16007,4009,4010);
 INSERT INTO transferencia VALUES(70013,17008,4007,4011);
