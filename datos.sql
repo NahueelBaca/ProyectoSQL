@@ -8,9 +8,9 @@ INSERT INTO ciudad VALUES (7123,"Ventana");
 
 
 
-SELECT * FROM ciudad;
 
 
+#Sucursal
 INSERT INTO sucursal VALUES (1,1466,"sucursal primera","Estomba 142","4511111","8 a 12");
 INSERT INTO sucursal VALUES (2,2345,"sucursal segunda","9 de julio 1283","4522222","9 a 13");
 INSERT INTO sucursal VALUES (3,3654,"sucursal tercera","Colón 971","4533333","10 a 14");
@@ -19,7 +19,9 @@ INSERT INTO sucursal VALUES (5,6454,"sucursal quinta","Pedro Pico 92","4555555",
 INSERT INTO sucursal VALUES (6,7123,"sucursal sexta","Moreno 377","4566666","16 a 20");
 INSERT INTO sucursal VALUES (7,1466,"sucursal septima","Sarmiento 880","4577777","17 a 21");
 INSERT INTO sucursal VALUES (8,7123,"sucursal octava","italia 443","4501010","8 a 18");
-SELECT * FROM sucursal;
+
+
+#empleado
 
 INSERT INTO empleado VALUES(1001,"Juan","Del","DNI",38920001,"San martin 22","291450791","Telefonista",md5("1441"),1);
 INSERT INTO empleado VALUES(1002,"Perez","Elraton","DNI",35647892,"Mitre 72","291578642","Administrativo",md5("1552"),2);
@@ -31,7 +33,9 @@ INSERT INTO empleado VALUES(1007,"Castro","Nicolas","DNI",32456787,"Mara 101010"
 INSERT INTO empleado VALUES(1008,"Rossi","Francisco","DNI",45789452,"11 de abril 102","291456862","Atención al público",md5("1562"),2);
 INSERT INTO empleado VALUES(1009,"Striebeck","Jorge","DNI",35456884,"Sarmiento 999","291568499","Cajero",md5("1444"),4);
 INSERT INTO empleado VALUES(1010,"Martínez","Gonzalo","DNI,",36458786,"Caronti 106","291489636","Administrativo",md5("1666"),6);
-SELECT * FROM empleado;
+
+
+#cliente
 
 INSERT INTO cliente VALUES (10001,"Alvarez","Alvaro","dni",39157999,"9 de julio 1332","4532529",'1995-11-27');
 INSERT INTO cliente VALUES (11002,"Benitez","Benito","dni",39032672,"Terrada 550","4517332",'1993-4-22');
@@ -42,7 +46,7 @@ INSERT INTO cliente VALUES (15006,"Charles","Javier","dni",21938244,"San Martin 
 INSERT INTO cliente VALUES (16007,"Mercurio","Alfredo","dni",20288214,"12 de octubre 1152","4575520",'1970-12-1');
 INSERT INTO cliente VALUES (17008,"Caminador","Pablo","dni",18878200,"Santa Fe 923","4582611",'1968-1-30');
 
-SELECT * FROM cliente;
+
 
 
 INSERT INTO plazo_fijo VALUES (2001,58654.51,'2018-08-31','2018-10-01',5.5,265.15,1); # 31 dias
@@ -52,7 +56,7 @@ INSERT INTO plazo_fijo VALUES (2005,65789.13,'2018-09-01','2019-09-16',07.55,517
 INSERT INTO plazo_fijo VALUES (2006,62555.54,'2018-11-01','2019-02-22',06.55,1279.73,4); # 114 dias
 INSERT INTO plazo_fijo VALUES (2007,49000.25,'2018-10-05','2019-05-01',07.00,1945.24,5); #  207 dias
 INSERT INTO plazo_fijo VALUES (2008,167777.87,'2018-09-11','2018-01-10',06.89,3927.20,7); # 124 dias
-SELECT * FROM plazo_fijo;
+
 
 INSERT INTO tasa_plazo_fijo VALUES(30,60000,0,5.50);
 INSERT INTO tasa_plazo_fijo VALUES(30,150000,60000,5.55);
@@ -73,11 +77,8 @@ INSERT INTO tasa_plazo_fijo VALUES(360,60000,0,7.50);
 INSERT INTO tasa_plazo_fijo VALUES(360,150000,60000,7.55);
 INSERT INTO tasa_plazo_fijo VALUES(360,9999999,150000,7.64);
 
-# plazo cliente
-# nro plazo 2001 2002 2003 2004 2005 2006 2007 2008
-# nro cliente 10001 11002 12003 13004 14005 16007 17008
 
-# out of range tasa interes
+
 INSERT INTO prestamo VALUES(3001,'2009-7-1',6,7500,20.00,750.00,1375.00,1007,10001);
 INSERT INTO prestamo VALUES(3002,'2012-12-6',12,2500,18.50,462.50,246.87,1001,11002);
 INSERT INTO prestamo VALUES(3003,'2006-5-6',24,15000,27.00,8100.00,962.50,1002,12003);
@@ -89,9 +90,6 @@ INSERT INTO prestamo VALUES(3008,'2007-9-3',6,14500,24.00,1740.00,2706.66,1007,1
 
 
 #pago
-# nro_prestamo nro pago fecha venc fecha pago
-#
-#
 
 INSERT INTO pago VALUES(3001,1,'2018-11-01','2018-09-21');
 INSERT INTO pago VALUES(3001,2,'2018-12-03',NULL);
@@ -158,7 +156,7 @@ INSERT INTO cliente_ca VALUES (13004,4009);
 INSERT INTO cliente_ca VALUES (11002,4010);
 INSERT INTO cliente_ca VALUES (10001,4011);
 
-# nro tarjeta pin cvt fecha venc nro cliente nro ca
+# tarjeta
 INSERT INTO tarjeta VALUES (5001,md5("9999"),md5("1111"),'2025-05-10',10001,4001);
 INSERT INTO tarjeta VALUES (5002,md5("3123"),md5("2222"),'2010-07-12',11002,4002);
 INSERT INTO tarjeta VALUES (5003,md5("4344"),md5("3333"),'2024-08-01',12003,4003);
@@ -227,9 +225,8 @@ INSERT INTO transaccion VALUES(70014,'2017-06-18','19:28:38', 10940.00);
 
 INSERT INTO debito VALUES (70001,"Estación de servicio",10001, 4001);
 INSERT INTO debito VALUES (70002,"Mc Donals",11002,4002);
-SELECT * FROM debito;
-INSERT INTO debito VALUES (70003,"Ferreira Sport",12003,4003);
-INSERT INTO debito VALUES (70004,"Rucca Ind",13004,4004);
+INSERT INTO debito VALUES (70003,"Mostaza",12003,4003);
+INSERT INTO debito VALUES (70004,"Septimo",13004,4004);
 
 #transaccion_por_caja
 
@@ -265,4 +262,3 @@ INSERT INTO extraccion VALUES(70011,10001,4011);
 INSERT INTO transferencia VALUES(70012,16007,4009,4010);
 INSERT INTO transferencia VALUES(70013,17008,4007,4011);
 
-SELECT * FROM trans_cajas_ahorro;

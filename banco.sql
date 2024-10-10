@@ -304,7 +304,7 @@ CREATE TABLE transferencia(  #?
 
 
 CREATE VIEW trans_cajas_ahorro AS
-SELECT 
+SELECT DISTINCT
     cca.nro_ca as nro_ca,
     ca.saldo as saldo,
     t.nro_trans as nro_trans,
@@ -328,8 +328,8 @@ JOIN caja_Ahorro ca ON ca.nro_ca = cca.nro_ca
 
 UNION 
 
-SELECT 
-    cca.nro_ca as nro_ca,
+SELECT DISTINCT
+    d.nro_ca as nro_ca,
     ca.saldo as saldo,
     d.nro_trans as nro_trans,
     t.fecha AS fecha,
@@ -344,27 +344,26 @@ SELECT
     c.apellido as apellido,
     NULL AS destino
 FROM transaccion t 
-join debito d on t.nro_trans = d.nro_trans
-join cliente_ca cca ON cca.nro_ca = d.nro_ca
-JOIN cliente c ON c.nro_cliente = cca.nro_cliente
-JOIN caja_Ahorro ca on ca.nro_ca = cca.nro_ca
+join debito d on d.nro_trans = t.nro_trans
+JOIN cliente c ON c.nro_cliente = d.nro_cliente
+JOIN caja_Ahorro ca on ca.nro_ca = d.nro_ca
 
 UNION 
 
-SELECT 
+SELECT DISTINCT
     cca.nro_ca as nro_ca,                            
     ca.saldo as saldo,                              
     dep.nro_trans as nro_trans,                       
     t.fecha as fecha,                          
     t.hora as hora,                              
-    'Depósito' AS tipo,                    
+    'deposito' AS tipo,                    
     t.monto as monto,                             
     tpc.cod_caja as cod_caja,                          
-    c.nro_cliente as nro_cliente,                         
-    c.tipo_doc as tipo_doc,                            
-    c.nro_doc as nro_doc,                             
-    c.nombre as nombre,                              
-    c.apellido as apellido,                            
+    null as nro_cliente,                         
+    null as tipo_doc,                            
+    null as nro_doc,                             
+    null as nombre,                              
+    null as apellido,                            
     NULL AS destino                        
 FROM transaccion t 
 JOIN deposito dep on dep.nro_trans = t.nro_trans
@@ -375,7 +374,7 @@ JOIN cliente c ON c.nro_cliente = cca.nro_cliente
 
 UNION 
 
-SELECT 
+SELECT DISTINCT
     cca.nro_ca as nro_ca,
     ca.saldo as saldo,
     t.nro_trans as nro_trans,
@@ -396,6 +395,8 @@ join transaccion_por_caja tpc on tpc.nro_trans = t.nro_trans
 JOIN cliente_ca cca ON cca.nro_ca = e.nro_ca 
 JOIN caja_Ahorro ca ON ca.nro_ca = cca.nro_ca          
 JOIN cliente c ON c.nro_cliente = e.nro_cliente; 
+
+
 
 
 
